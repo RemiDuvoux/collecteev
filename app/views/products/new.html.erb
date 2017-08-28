@@ -1,0 +1,7 @@
+<%= simple_form_for @product do |f| %>
+    <%= f.input :product_name %>
+    <%= f.input :product_desc %>
+    <%= f.input :product_image %>
+    <%= f.input :product_image_cache, as: :hidden %>
+  <%= f.submit "Go", class: "btn btn-primary" %>
+<% end %>

@@ -1,0 +1,21 @@
+<div class="full-width mission-container">
+
+  <p>Nous donnons vie aux idées des artistes les plus talentueux.</p>
+
+<p>Ils créent le design, nous produisons et livrons les Tshirts à votre domicile.</p>
+</div>
+
+<div class="container">
+  <div class="row">
+
+<% @campaigns.each do |c| %>
+
+<% if c.product.nil? %>
+<%else%>
+<div class="col-xs-6">
+  <%= render 'campaigns/campaign_card', c: c %>
+<%end%>
+</div>
+<% end %>
+  </div>
+</div>
