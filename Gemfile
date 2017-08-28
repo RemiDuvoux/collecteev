@@ -18,6 +18,8 @@ gem 'simple_form'
 gem 'uglifier'
 gem 'cloudinary'
 gem 'carrierwave', '~> 0.11.2'
+gem 'money-rails'
+gem 'omniauth-facebook'
 
 group :development, :test do
   gem 'pry-byebug'
