@@ -10,11 +10,8 @@
 
 <% @campaigns.each do |c| %>
 
-<% if c.product.nil? %>
-<%else%>
 <div class="col-xs-6">
   <%= render 'campaigns/campaign_card', c: c %>
-<%end%>
 </div>
 <% end %>
   </div>

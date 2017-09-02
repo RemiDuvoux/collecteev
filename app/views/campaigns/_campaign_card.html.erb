@@ -1,8 +1,8 @@
 <div class="campaign-card">
-  <%= cl_image_tag c.product.product_image, height: 300, width: 500, crop: :fill %>
+  <%= cl_image_tag c.product_image, height: 300, width: 500, crop: :fill %>
   <div class="user-box">
   <%= image_tag "user_avatar.png", class: "designer-avatar" %>
-  <%= c.product.user.email %>
+  <%= c.user.email %>
   </div>
   <div class="campaign-stats">
     <p><span class="amount-collected neat-black">1400€</span><span> collectés</span></p>
@@ -11,9 +11,8 @@
   </div>
 
 
-  <p><%= c.product.product_name %></p>
-  <p><%= c.product.product_desc %></p>
+  <p><%= c.product_name %></p>
+  <p><%= c.product_desc %></p>
 
 </div>
-
 
