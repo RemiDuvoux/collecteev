@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170902132545) do
+ActiveRecord::Schema.define(version: 20170910155226) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,13 +19,14 @@ ActiveRecord::Schema.define(version: 20170902132545) do
     t.string   "product_name"
     t.text     "product_desc"
     t.string   "product_type"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.integer  "user_id"
     t.string   "product_image"
-    t.integer  "price_cents",   default: 0, null: false
+    t.integer  "price_cents",   default: 0,  null: false
     t.date     "start_date"
     t.date     "end_date"
+    t.integer  "goal",          default: 50, null: false
     t.index ["user_id"], name: "index_campaigns_on_user_id", using: :btree
   end
 

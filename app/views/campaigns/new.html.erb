@@ -2,6 +2,7 @@
     <%= f.input :product_name %>
     <%= f.input :product_desc %>
     <%= f.input :product_image %>
+    <%= f.input :price, currency: "€" %>
     <%= f.input :product_image_cache, as: :hidden %>
   <%= f.submit "Go", class: "btn btn-primary" %>
 <% end %>

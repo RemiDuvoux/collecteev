@@ -11,7 +11,9 @@
 <% @campaigns.each do |c| %>
 
 <div class="col-xs-6">
+  <%= link_to campaign_path(c) do %>
   <%= render 'campaigns/campaign_card', c: c %>
+  <% end %>
 </div>
 <% end %>
   </div>

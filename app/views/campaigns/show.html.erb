@@ -1,1 +1,22 @@
-<%= @campaign.product_name %>
+<h2><%= @campaign.product_name %></h2>
+<%= humanized_money_with_symbol(@campaign.price) %>
+<p><%= humanized_money_with_symbol(@amount_pledged) %> pledged</p>
+<% avatar_url = @creator.facebook_picture_url || "http://placehold.it/30x30" %>
+
+<p><%= image_tag avatar_url%> <%= @creator.first_name%> <%= @creator.last_name%></p>
+<div class="completion-box">
+<%= (@pledges.to_f / @campaign.goal.to_f) * 100 %>% completed (<%= @pledges %> pledges out of <%= @campaign.goal %>)
+<div class="jauge">
+  <div class="completed" style="width:<%= (@pledges.to_f / @campaign.goal.to_f) * 100 %>%">
+  </div>
+</div>
+</div>
+
+<%= cl_image_tag @campaign.product_image, height: 300, width: 500, crop: :fill %>
+
+
+<%= simple_form_for [@campaign, @order] do |f| %>
+<%= f.input :street_name %>
+<%= f.input :zip_code %>
+<%= f.submit "I want this", class: "btn btn-primary" %>
+<% end %>
