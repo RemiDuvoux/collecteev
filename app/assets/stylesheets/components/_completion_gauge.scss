@@ -1,9 +1,12 @@
 .jauge {
-  width: 100px;
-  height: 10px;
+  height: 5px;
+  background-color: #E6E7E8;
+  border-radius: 2px;
+  transform: translateY(100%);
 }
 
 .completed {
   height: 100%;
   background-color: #3AED27;
+  border-radius: 2px;
 }

@@ -1,20 +1,27 @@
 <div class="full-width mission-container">
 
-  <p>Nous donnons vie aux idées des artistes les plus talentueux.</p>
-
-<p>Ils créent le design, nous produisons et livrons les Tshirts à votre domicile.</p>
 </div>
 
-<div class="container">
-  <div class="row">
-
-<% @campaigns.each do |c| %>
-
-<div class="col-xs-6">
-  <%= link_to campaign_path(c) do %>
-  <%= render 'campaigns/campaign_card', c: c %>
-  <% end %>
-</div>
-<% end %>
+<section class="bigwave">
+  <div class="container">
+    <div class="title-box">
+      <h1>Let's help artists live </br>their dreams</h1>
+      <h3>We produce, sell and promote the best artists' work.</h3>
+      <span class="arrow-bottom"></span>
+    </div>
   </div>
-</div>
+</section>
+
+<section class="campaign-cards">
+  <div class="container">
+    <div class="row">
+      <% @campaigns.each do |c| %>
+      <div class="col-xs-12 col-md-4">
+        <%= link_to campaign_path(c), class:"card-link" do %>
+        <%= render 'campaigns/campaign_card', c: c %>
+        <% end %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</section>

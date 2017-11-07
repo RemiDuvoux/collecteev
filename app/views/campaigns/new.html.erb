@@ -1,8 +1,49 @@
-<%= simple_form_for @campaign do |f| %>
-    <%= f.input :product_name %>
-    <%= f.input :product_desc %>
-    <%= f.input :product_image %>
-    <%= f.input :price, currency: "€" %>
-    <%= f.input :product_image_cache, as: :hidden %>
-  <%= f.submit "Go", class: "btn btn-primary" %>
-<% end %>
+<div class="container">
+  <div class="col-xs-8 col-xs-offset-2">
+    <div class="new_campaign_card">
+    <%= simple_form_for @campaign do |f| %>
+        <%= f.input :product_name %>
+        <%= f.input :product_desc %>
+        <%= f.input :product_image, label: false do %>
+        <div class="fileinput fileinput-new" data-provides="fileinput">
+          <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
+            <div>
+              <span class="btn btn-default btn-file">
+                <span class="fileinput-new">Select image</span>
+                <span class="fileinput-exists">Change</span>
+                <%= f.file_field :product_image %>
+              </span>
+              <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+            </div>
+        </div>
+        <% end %>
+        <%= f.input :price, currency: "€", input_html: {min: 0, max: 100, value: 20} %>
+        <%= f.input :goal %>
+        <%= f.input :start_date, label: "Start date of the sale", start_day: Date.today, order: [:month,:day, :year]%>
+        <%= f.input :end_date, label: "End date of the sale", start_day: (Date.today + 7), order: [:month,:day, :year] %>
+        <%= f.input :product_image_cache, as: :hidden %>
+        <p>You will earn <span id="money_earned_per_sale">6.40</span>€ per sale, and <span id="money_earned_total">320</span>€ in total.</p>
+      <%= f.submit "Go", class: "btn btn-primary" %>
+    <% end %>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Dynamic change of displayed price
+  $(document).ready(function() {
+    $('#campaign_price, #campaign_goal').on('keyup', function() {
+      if ($('#campaign_price').val() < 12) {
+        // If price is less than cost -> should be in price validation
+        $('#money_earned_per_sale').text('0');
+        $('#money_earned_total').text('0');
+          } else {
+      // Display price minus costs and margin, rounded to 2 decimals
+      $('#money_earned_per_sale').text((($('#campaign_price').val() - 12)*0.8).toFixed(2));
+      // Display total money earned, rounded to 2 decimals
+      $('#money_earned_total').text((($('#campaign_price').val() - 12)*($('#campaign_goal')).val()*0.8).toFixed(2));
+
+          }
+    });
+  });
+</script>

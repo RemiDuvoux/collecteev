@@ -1,22 +1,90 @@
-<h2><%= @campaign.product_name %></h2>
-<%= humanized_money_with_symbol(@campaign.price) %>
-<p><%= humanized_money_with_symbol(@amount_pledged) %> pledged</p>
-<% avatar_url = @creator.facebook_picture_url || "http://placehold.it/30x30" %>
-
-<p><%= image_tag avatar_url%> <%= @creator.first_name%> <%= @creator.last_name%></p>
-<div class="completion-box">
-<%= (@pledges.to_f / @campaign.goal.to_f) * 100 %>% completed (<%= @pledges %> pledges out of <%= @campaign.goal %>)
-<div class="jauge">
-  <div class="completed" style="width:<%= (@pledges.to_f / @campaign.goal.to_f) * 100 %>%">
+<div class="campaign-show">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-6 col-xs-offset-3 campaign-title">
+        <h2><%= @campaign.product_name %></h2>
+        <% avatar_url = @creator.facebook_picture_url || "http://placehold.it/30x30" %>
+        <p><%= image_tag avatar_url, class: "designer-avatar"%> <%= @creator.first_name%> <%= @creator.last_name%></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <%= cl_image_tag @campaign.product_image, class:"image-detail" %>
+      </div>
+      <div class="col-xs-12 col-md-6">
+        <div class="details-box">
+          <div class="completion-box">
+            <div class="row">
+              <div class="jauge">
+                <div class="completed" style="width:<%= completion_percentage(@campaign) %>%">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="number-of-pledges">
+                <span class="bold-green"><%= "#{pledges(@campaign)}"%></span>
+                <span class="soft_grey"><%=" pledge(s) out of #{@campaign.goal}"%></span>
+              </div>
+              <div class="amount-pledged">
+                <span class="bold-green"><%= "#{humanized_money_with_symbol amount_pledged(@campaign)}"%></span>
+                <span class="soft_grey"><%="pledged out of #{humanized_money_with_symbol maximum_pledged(@campaign)}"%></span>
+              </div>
+              <div class="time-left">
+                <span class="bold-green"><%= "#{time_left(@campaign)}"%></span>
+                <span class="soft_grey">days to go</span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="text-center">
+                <button class="buy-button" data-toggle="modal" data-target="#myModal">Back this project</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Thanks for backing this project!</h4>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for [@campaign, @order] do |f| %>
+        <%= f.input :street_name %>
+        <%= f.input :zip_code %>
+        <%= f.submit "I want this", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
 </div>
 
-<%= cl_image_tag @campaign.product_image, height: 300, width: 500, crop: :fill %>
 
 
-<%= simple_form_for [@campaign, @order] do |f| %>
-<%= f.input :street_name %>
-<%= f.input :zip_code %>
-<%= f.submit "I want this", class: "btn btn-primary" %>
-<% end %>
+
+
+</div>
+</div>

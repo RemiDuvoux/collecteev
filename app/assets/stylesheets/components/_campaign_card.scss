@@ -1,8 +1,68 @@
 .campaign-card {
-  margin: 30px 40px 30px 30px;
-  text-align: center;
   border: 0 solid #979797;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.50);
   border-radius: 26px;
+  padding: 4%;
+  margin-top: 10%;
+  background-color: white;
+  &:hover {
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.70);
+    .time-left {
+      visibility: visible;
+    }
+  }
+  font-size: 14px;
+  @media (max-width: 500px) {
+      font-size: 9px;
+  }
+
+  .time-left {
+    visibility: hidden;
+  }
+
+  .smaller {
+    font-size: 9px;
+  }
+}
+
+  .card-link {
+    text-decoration: none;
+    color: inherit;
+    &:hover {
+      text-decoration: none;
+      color: inherit;
+    }
+  .campaign_card_image {
+
+  }
+
+  .user-box {
+    margin: 10px 0px 10px 0px;
+  }
+
+  .campaign-stats {
+    margin: 10px 0px 10px 0px;
+  }
+
+  .buy-button {
+    text-align: center;
+    margin-top: 10%;
+  }
+  .campaign_card_product_price {
+    font-weight: bolder;
+    font-size: 25px;
+    margin-top: -4px;
+    @media (max-width: 500px) {
+      font-size: 20px;
+    }
+  }
+  .element {
+    display:flex;
+    height: 25px;
+  }
+
+  .elements_box {
+    margin:     10px 0px 10px 0px;
+  }
 }
 

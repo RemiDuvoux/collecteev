@@ -21,6 +21,7 @@ gem 'carrierwave', '~> 0.11.2'
 gem 'money-rails'
 gem 'omniauth-facebook'
 gem 'mangopay'
+gem 'jasny-bootstrap-rails'
 
 group :development, :test do
   gem 'pry-byebug'

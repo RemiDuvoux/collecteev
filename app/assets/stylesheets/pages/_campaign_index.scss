@@ -1,0 +1,38 @@
+.bigwave {
+  position: relative;
+  padding-bottom: 450px;
+}
+
+.arrow-bottom {
+  background: url(arrow-bottom.svg) no-repeat top;
+  min-height: 50px;
+}
+
+.bigwave:after {
+    background: url(wave.svg) no-repeat top;
+    bottom: -1px;
+    content: "";
+    display: block;
+    min-height: 500px;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+}
+
+.campaign-cards {
+  background: linear-gradient(top,#4E7CBE,#37D7C5 80%);
+  padding-bottom: 100px;
+}
+.campaign-cards:before {
+  content: "";
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    transform: skewY(-5deg);
+    transform-origin: 0;
+    width: 100%;
+    z-index: -1;
+    -webkit-backface-visibility: hidden;
+    height: 975px;
+}

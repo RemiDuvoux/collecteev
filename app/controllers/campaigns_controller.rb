@@ -18,12 +18,11 @@ class CampaignsController < ApplicationController
     @campaign = Campaign.find(params[:id])
     @order = Order.new
     @amount_pledged = Order.where(campaign: @campaign).count * @campaign.price
-    @pledges = Order.where(campaign: @campaign).count
     @creator = @campaign.user
   end
 private
 
   def campaign_params
-    params.require(:campaign).permit(:product_image, :product_name, :product_image_cache, :product_desc, :price)
+    params.require(:campaign).permit(:product_image, :product_name, :product_image_cache, :product_desc, :price, :start_date, :end_date)
   end
 end

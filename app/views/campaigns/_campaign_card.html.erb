@@ -1,18 +1,54 @@
 <div class="campaign-card">
-  <%= cl_image_tag c.product_image, height: 300, width: 500, crop: :fill %>
+  <div class="row">
+    <div class="col-xs-8">
+      <span class="campaign_card_image"><%= cl_image_tag c.product_image, width: "150%"%></span>
+    </div>
+    <div class="col-xs-4">
+      <div class="time-left">
+        <i class="fa fa-calendar-o soft_grey" aria-hidden="true"></i><span class="amount-collected neat-black"> <%= (c.end_date - c.start_date).to_i%></span><span class="soft_grey smaller"> j restants</span>
+      </div>
+    </div>
+  </div>
   <div class="user-box">
-  <%= image_tag "user_avatar.png", class: "designer-avatar" %>
-  <%= c.user.email %>
+    <% designer_image_url = c.user.facebook_picture_url || "user_avatar.png" %>
+    <%= image_tag designer_image_url, class: "designer-avatar" %>
+    <span class="soft_grey">par <%= c.user.first_name %></span>
   </div>
   <div class="campaign-stats">
-    <p><span class="amount-collected neat-black">1400€</span><span> collectés</span></p>
-    <p><span class="amount-collected neat-black">70</span> Tshirts vendus</p>
-    <p><span class="amount-collected neat-black"> 3 jours et 2 heures</span>restants</p>
+    <div class="row">
+      <div class="col-xs-7">
+        <div class="jauge jauge-in-card">
+          <div class="completed" style="width:<%= completion_percentage(c) %>%">
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-5">
+        <span class="completion_percentage_on_campaign_card soft_grey">
+          <%= "#{pledges(c)} / #{c.goal} vendus"%>
+        </span>
+      </div>
+    </div>
   </div>
-
-
-  <p><%= c.product_name %></p>
-  <p><%= c.product_desc %></p>
-
+  <div class="elements_box">
+    <div class="row vertical-align">
+      <div class="col-xs-8">
+        <div class="element">
+          <p class="campaign_card_product_name campaign_card_element"><%= c.product_name %></p>
+        </div>
+      </div>
+      <div class="col-xs-4">
+        <div class="element">
+          <p class="campaign_card_product_price campaign_card_element"><%= money_without_cents_and_with_symbol c.price %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-2 col-xs-offset-4">
+      <div class="btn btn-primary buy-button">
+        Acheter
+      </div>
+    </div>
+  </div>
 </div>
 
