@@ -23,6 +23,10 @@ gem 'omniauth-facebook'
 gem 'mangopay'
 gem 'jasny-bootstrap-rails'
 
+group :production do
+  gem 'rails_12factor'
+end
+
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
